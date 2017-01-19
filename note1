@@ -1,0 +1,11 @@
+输入的数字为字符串  进行计算时 需要用int：
+	sum=0
+	for i in range(5):
+    		sum+=int(raw_input("enter a number:"))
+	print sum
+
+
+
+
+ #uses sum() BIF and generator expressions:   例2-8.py
+	print sum(int(raw_input("enter a number:"))for i in range(5))

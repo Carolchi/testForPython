@@ -1,0 +1,129 @@
+yield 用法：
+	iterable(迭代器)
+		当你创建一个list，你可以一个一个的获取，这种列表就成为迭代：
+		>>> mylist = [1, 2, 3]
+		>>> for i in mylist:
+		...    print(i)
+		1
+		2
+		3
+		任何可以用for in 来迭代读取的都是迭代容器。这些迭代器非常的便利，因为可以想取多少取多少，但是你得存储所有的值，其中很多值都完全没有必要每次都保持在内存中。
+
+	Generator(生成器)
+		可迭代，但每次只能迭代他们一次，因为不是所有的迭代器都被一直存储在内存中，他们临时产生这些值：
+		>>> mygenerator = (x*x for x in range(3))
+		>>> for i in mygenerator:
+		...    print(i)
+		0
+		1
+		4
+		生产器几乎和迭代器是相同的，除了符号[]变为（），并且无法用两次，因为只生成一次：生成0后然后丢弃，继续统计1,接着是4,一个接着一个。
+
+	yield
+		yield的用法有点像return，除了它返回的是一个生成器：
+	>>> def createGenerator():
+	...    mylist = range(3)
+	...    for i in mylist:
+	...        yield i*i
+	...
+	>>> mygenerator = createGenerator() # create a generator
+	>>> print(mygenerator) # mygenerator is an object!
+	<generator object createGenerator at 0xb7555c34>
+	>>> for i in mygenerator:
+	...     print(i)
+	0
+	1
+	4
+
+
+enumerate()用法
+	是python的内置函数，多用于在for循环中得到计数。对于一个可迭代的（iterable）/可遍历的对象（如列表、字符串），enumerate将其组成一个索引序列，利用它可以同时获得索引和值：
+list1 = ["这", "是", "一个", "测试"]
+for index, item in enumerate(list1):
+    print index, item
+>>>
+0 这
+1 是
+2 一个
+3 测试
+
+    enumerate还可以接收第二个参数，用于指定索引起始值，如：
+
+list1 = ["这", "是", "一个", "测试"]
+for index, item in enumerate(list1, 1):
+    print index, item
+>>>
+1 这
+2 是
+3 一个
+4 测试
+
+
+主程序：
+if__name__=='__main__':
+
+eg:
+#file one.py
+#!/usr/bin/python
+#coding=utf-8
+def func():
+    print("func() in one.py")
+print("top-level in one.py")
+if __name__ == "__main__":
+    print("one.py is being run directly")
+else:
+    print("one.py is being imported into another module") 
+
+#file two.py
+#!/usr/bin/python
+#coding=utf-8
+import one
+print("top-level in two.py")
+one.func()
+if __name__ == "__main__":
+    print("two.py is being run directly")
+else:
+    print("two.py is being imported into another module")
+
+执行python two.py
+结果：
+top-level in one.py
+one.py is being imported into another module
+top-level in two.py
+func() in one.py
+two.py is being run directly
+
+
+
+
+str() vs. repr()
+repr() is a built-in function while str() was a built-in function that
+changed to a factory function in Python 2.2. They will both return a string rep-
+resentation of an object; however, str() returns a printable string representa-
+tion while repr() (and the backquote operator ‘‘ ) return an evaluatable
+string representation of an object, meaning that it is a string that represents a
+(valid) Python object that would be created if passed to eval() .
+
+
+Object equality
+type(a) == type(b) whether the value of type(a) is the same as the
+value of type(b)... == is a value compare
+type(a) is type(b) whether the type objects returned by type(a)
+and type(b) are the same object
+Since there exists only one (type) object for each built-in type, there is no need
+to check their values; hence, only the latter form should be used.
+
+
+strip()方法
+	用于移除字符串头尾指定的字符（默认为空格）。
+	str.strip([chars])
+eg:	#!/usr/bin/python
+
+	str = "0000000this is string example....wow!!!0000000";
+	print str.strip( '0' );
+
+	以上实例输出结果如下：
+
+	this is string example....wow!!!
+
+
